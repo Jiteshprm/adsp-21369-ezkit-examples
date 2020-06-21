@@ -1,0 +1,159 @@
+
+<html>
+	<head>
+		<title>readme</title>
+		<style type="text/css">
+			body { padding:20px;font:14px Arial, Helvetica, Verdana; }
+			pre { border:1px solid gray;padding:10px;background-color:#f0f0f0; }
+			td { padding:5px; }
+			td.heading { background-color:#f0f0f0;border:1px solid #d0d0d0; padding:5px;}
+			h1 { color:#003366; width:100%; border-bottom:1px solid #003366; margin-top:40px; margin-bottom:40px }
+			h2 { color:#000000; border:0px; }
+			li { padding:3px; }
+			#header { background-color:#003366; width:100% }
+		</style>
+	</head>
+	<body>
+	
+		<div id="header">&nbsp;</div>
+
+		<h1>ADSP-21369 EZ-Kit Power-On Self-Test (POST)</h1>
+
+		<p>
+		<ol>
+			<li><a href="#OV">Overview </a></li>
+			<li><a href="#SC">Software configuration </a></li>
+			<li><a href="#HC">Hardware requirements and setup </a></li>
+			<li><a href="#RE">Running the example</a></li>
+			<li><a href="#LF">Using Loader Files</a></li>
+		</ol>
+		</p>
+
+		<h1>1. <a name="OV">Overview </a></h1>
+
+			<p>
+				This example allows the user to test the many peripherals of the EZ-Kit.  This example is also pre-programmed into the on-board flash
+				memory.  By following the directions below you can also program this example (or one of your own) into the EZ-Kit flash.
+			</p>
+
+			
+		<h1>2. <a name="SC"> Software configuration </a></h1>				
+
+					
+		<h1>3. <a name="HC">Hardware Requirements and Setup </a></h1>
+
+			<h2>3.1 Supported platforms </h2>
+				
+				<ol>
+					<li>ADSP-21369 EZ-Kit rev 2.2 or higher </li>
+				</ol>
+
+			<h2>3.2 Hardware Setup </h2>
+
+			The following switch and jumper settings should be used for this example.  Some tests require changes to be made and those will be pointed
+			out in the test specific sections.  If not specified, these default settings should be used.<br><br>
+			
+					<table border="1">
+						<tr>
+							<td class="heading" colspan="9"><b>ADSP-21369 EZ-Kit rev 2.2</b></td>
+						</tr>
+						<tr><th><b>Switches</b></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
+						<tr><td>SW1</td><td>OFF</td><td>OFF</td><td>OFF</td><td>OFF</td><td>OFF</td><td>OFF</td><td>OFF</td><td>OFF</td></tr>
+						<tr><td>SW2</td><td>ON</td><td>OFF</td><td>ON</td><td>ON</td></tr>
+						<tr><td>SW3</td><td>OFF</td><td>ON</td><td>ON</td><td>ON</td></tr>
+						<tr><td>SW4</td><td>OFF</td><td>OFF</td><td>OFF</td><td>OFF</td></tr>
+						<tr><td>SW5</td><td>OFF</td><td>ON</td><td>OFF</td><td>ON</td></tr>
+						<tr><td>SW6</td><td>ON</td><td>ON</td><td>ON</td><td>ON</td></tr>
+						<tr><td>SW7</td><td>ON</td><td>ON</td><td>ON</td><td>ON</td></tr>
+						<tr><td>SW13</td><td>ON</td><td>ON</td><td>OFF</td><td>OFF</td><td>OFF</td><td>OFF</td></tr>
+						<tr><td>SW14</td><td>ON</td><td>ON</td><td>ON</td><td>ON</td><td>ON</td><td>ON</td><td>ON</td><td>ON</td></tr>
+						<tr><td>SW15</td><td>ON</td><td>ON</td><td>ON</td><td>OFF</td></tr>
+						<tr><th><b>Jumpers</b></th><th>1-2</th></tr>
+						<tr><td>JP1</td><td>OFF</td></tr>
+						<tr><td>JP2</td><td>OFF</td></tr>
+						<tr><td>JP3</td><td>OFF</td></tr>
+						<tr><td>JP4</td><td>OFF</td></tr>
+					</table>
+
+					
+		<h1>4.<a name="RE"> Running the example</a></h1>
+		
+			<h2>4.1 Getting Started </h2>
+			
+			<ol>
+				<li>Be sure you have read both the EZ-Kit Evaluation System manual and <a href="#HC">Hardware Requirements and Setup</a>
+				section of this file and followed their instructions.</li>
+				<li>Connect to your target board with CrossCore Embedded Studio (CCES). If you need help refer to the CCES documentation.</li>
+				<li>Use the Example Browser to open this example project and build it.  If you need help refer to the CCES documentation.</li>
+				<li>Create and launch a debug configuration which loads the executable.   If you need help refer to the CCES documentation.</li>
+				<li>Now run the executable by choosing the "Run" and then "Resume" menu items or by pressing the F5 key.</li>
+			</ol>
+		
+			<h2>4.2 Selecting Tests </h2>
+			
+			This POST uses the pushbuttons to select individual tests.
+			<BR><BR>
+			Please refer to the <b>table in main.c</b> for the corresponding LED status.
+			If the LED status is blinking continuously then a failure has occured.
+			Otherwise the LEDs should sequence through all sequences as the test continues.
+			
+			<h2>4.3 Individual Test Notes</h2>
+			
+			<b>Standard Loop Tests</b>
+			<ul>
+			<li>When running in CCES, hold down PB4 and then run the dxe.
+				When LED8 lights up release PB4.</li>
+			<li>When running standalone, hold down PB4 and reset. Release reset
+				and when LED8 lights up release PB4.</li>	
+			<li>Press each push button and the LEDs should change as each one is pressed.</li>
+			<li>At this point the tests will continue without requiring user input.  When 
+				the last test is reached it will loop back to this point so that tests will 
+				continue to run without any further user input.</li>
+			<li>If a test fails, POST will stop at that point and blink the LED pattern for 
+				the failing test.  Refer to the table in main.c for LED patterns.</li>
+			</ul>
+				
+		 <h1>5.<a name="LF"> Using Loader Files</a></h1>
+		 
+			POST ships already programmed into the parallel flash.  If you wish to make changes to POST
+			or create your own application to program into flash you may do so as well.  Parallel flash
+			and serial flash drivers are provided for this EZ-Kit to allow you to use the CrossCore
+			Embedded Studio Device Programmer utility to program each flash.  Refer to the device programmer 
+			help for more information.
+			<BR><BR>
+			The basic steps to this process would be the following:
+			
+			<ol>
+				<li><b>Create a loader (.LDR) file that can be programmed into a flash device.</b></li>
+				<ul>
+					<li>Assuming your project is already loaded into CCES, go to the "Project" menu and choose "Properties", then "C/C++ Build",
+						then "Settings", then "Build Artifact" tab.</li>
+					<li>There you will see "Artifact Type".  From the dropdown menu select "Loader File".</li>
+					<li>Click on the "Tool Settings" tab and select "CrossCore SHARC Loader" then "General".</li>
+					<li>For "Boot mode" choose "SPI flash" for serial or "Prom" for parallel.</li>
+					<li>For "Boot format" choose "Intel hex".</li>
+					<li>For "Output width" choose "8-bits".</li>
+					<li>"Prom start address" should be blank.</li>
+					<li>"No kernel" should be unchecked.</li>
+					<li>"Use default kernel" should be checked.</li>
+					<li>Click "OK".</li>
+					<li>Rebuild the project to generate the LDR file.</li>
+				</ul>
+				<li><b>Download the LDR file into flash using the Command Line Device Programmer (CLDP) application.</b></li>
+				<ul>
+					<li>Please refer to the CLDP help for more information.</li>
+					<li>Note, there are many options when using the CLDP (including defining your connection type, driver file, loader file, etc.
+					Here is a sample command line to program the POST loader file to the parallel flash on the EZ-Kit using an HPUSB-ICE emulator:</li>
+					<BR>
+					<em>cldp -proc ADSP-21369 -emu hpusb -driver "C:\21369_EZ-Kit\Examples\Device_Programmer\parallel\21369_am29lv081b_dpia.dxe" -cmd prog -erase affected -format hex -file "C:\21369_EZ-Kit\Examples\Power_On_Self_Test\Debug\21369_post.ldr"</em>
+					<BR>
+				</ul>
+				<li><b>Boot your newly programmed example.</b></li>
+				<ul>
+					<li>Parallel flash boot - Set SW2 position 1 ON and position 2 OFF.</li>
+					<li>Serial flash boot - Set SW2 position 1 OFF and position 2 ON.</li>
+				</ul>
+			</ol>    
+	</body>
+</html>
+
